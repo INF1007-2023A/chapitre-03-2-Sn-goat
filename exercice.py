@@ -2,9 +2,7 @@
 
 
 def dissipated_power(voltage, resistance):
-	input_voltage = voltage
-	input_resistance = resistance
-	puissance = (input_voltage ** 2) / input_resistance
+	puissance = (voltage ** 2) / resistance
 	return puissance
 
 def orthogonal(v1, v2):
