@@ -22,19 +22,27 @@ def average(values):
 		average_positive = positive_number / len(list_number)
 	return average_positive
 
-def bills(value):
-	# TODO: Calculez le nombre de billets de 20$, 10$ et 5$ et pièces de 1$ à remettre pour représenter la valeur.
-	while value != 0:
-		if value >= 20:
-			pass
-		elif value >= 10:
-			pass
-		elif value >= 5:
-			pass
-		elif value >= 1:
-			pass
 
-	return (twenties, tens, fives, twos, ones);
+def bills(value):
+    hundred = twenties = tens = fives = ones = 0
+    while value != 0:
+        if  value >= 100:
+            hundred += (value // 100)
+            value %= 100
+        elif value >= 20:
+            twenties += (value // 20)
+            value %= 20
+        elif value >= 10:
+            tens += (value // 10)
+            value %= 10
+        elif value >= 5:
+            fives += (value // 5)
+            value %= 5
+        elif value >= 1:
+            ones += (value // 1)
+            value %= 1
+    return (hundred,twenties,tens, fives, ones)
+
 
 def format_base(value, base, digit_letters):
 	# Formater un nombre dans une base donné en utilisant les lettres fournies pour les chiffres<
