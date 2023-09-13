@@ -42,16 +42,26 @@ def bills(value):
     return (hundred,twenties,tens, fives, ones)
 
 
-def format_base(value, base, digit_letters):
-	# Formater un nombre dans une base donné en utilisant les lettres fournies pour les chiffres<
-	# `digits_letters[0]` Nous donne la lettre pour le chiffre 0, ainsi de suite.
+def format_base(value, base):
 	result = ""
-	abs_value = abs(value)
-	while abs_value != 0:
-		pass
-	if value < 0:
-		# TODO: Ne pas oublier d'ajouter '-' devant pour les nombres négatifs.
-		pass
+	if base == 16:
+		number = hex(value)
+		number = number[2:]
+		if value < 0:
+			result = "-"
+			number = number[1:]
+	elif base == 2:
+		number = bin(value)
+		number = number[2:]
+		if value < 0:
+			result = "-"
+			number = number[1:]
+	elif base == 10:
+		number = str(value)
+		if value < 0:
+			result = "-"
+	for i in number:
+		result += i
 	return result
 
 
@@ -60,4 +70,4 @@ if __name__ == "__main__":
 	print(orthogonal((1, 1), (-1, 1)))
 	print(average([1, 4, -2, 10]))
 	print(bills(137))
-	print(format_base(-42, 16, "0123456789ABCDEF"))
+	print(format_base(-42, 16))
