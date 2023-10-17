@@ -6,14 +6,11 @@ def dissipated_power(voltage, resistance):
 	return puissance
 
 def orthogonal(v1, v2):
-	dot_product = (v1[0] * v2[0]) + (v1[1] + v2[1])
+	dot_product = (v1[0] * v2[0]) + (v1[1] * v2[1])
 	return dot_product == 0
        
 def average(values):
-	list_number = []
-	for number in values:
-		if number >= 0:
-			list_number.append(number)
+	list_number = [ number for number in values if number >= 0]
 	positive_number = 0
 	for number in list_number:
 		positive_number += number
@@ -42,27 +39,16 @@ def bills(value):
     return (hundred,twenties,tens, fives, ones)
 
 
-def format_base(value, base):
+def format_base(value, base,letters):
 	result = ""
-	if base == 16:
-		number = hex(value)
-		number = number[2:]
-		if value < 0:
-			result = "-"
-			number = number[1:]
-	elif base == 2:
-		number = bin(value)
-		number = number[2:]
-		if value < 0:
-			result = "-"
-			number = number[1:]
-	elif base == 10:
-		number = str(value)
-		if value < 0:
-			result = "-"
-	for i in number:
-		result += i
-	return result
+	abs_value = abs(value)
+	while abs_value != 0:
+		digit_value = abs_value % base
+		result += letters[digit_value]
+		abs_value //= base
+	if value < 0:
+		result += "-"
+	return result[::-1]
 
 
 if __name__ == "__main__":
@@ -70,4 +56,4 @@ if __name__ == "__main__":
 	print(orthogonal((1, 1), (-1, 1)))
 	print(average([1, 4, -2, 10]))
 	print(bills(137))
-	print(format_base(-42, 16))
+	print(format_base(-2003, 16,"0123456789ABCDEF"))
